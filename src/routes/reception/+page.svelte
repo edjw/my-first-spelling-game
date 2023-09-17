@@ -56,11 +56,6 @@
     scrambledLetters.update((scrambledLetters) =>
       toggleLetterSelected(scrambledLetters, letterIndex)
     );
-
-    console.log(letter);
-
-    console.log($selectedLetters);
-    console.log($scrambledLetters);
   };
 
   startAnotherGame(); // Initialize game on page load
@@ -75,13 +70,13 @@
 </script>
 
 <div class="grid grid-rows-[1fr]">
-  <section class="flex flex-row items-center justify-center">
-    <p class="text-4xl my-0">
+  <section class="flex flex-row items-center justify-center pt-8">
+    <p class="text-4xl my-0 select-none">
       {$answerWord}
     </p>
   </section>
 
-  <div class="relative">
+  <div>
     <!-- the answer section -->
     <section>
       <Train carriages={$answerWord.length} />
@@ -93,7 +88,7 @@
         {#each $scrambledLetters as { letter, isSelected, letterIndex } (letterIndex)}
           {#if !isSelected}
             <button
-              class="flex flex-row items-center justify-center outline rounded w-12 h-12 text-3xl"
+              class="flex flex-row items-center justify-center outline rounded w-12 h-12 text-3xl select-none"
               on:click={() => toggleLetter(letterIndex)}
             >
               {letter}
@@ -110,7 +105,10 @@
         >
           Nearly! Try again.
         </p>
-        <button class="outline rounded px-4 py-2" on:click={resetThisGame}>
+        <button
+          class="outline rounded px-4 py-2 select-none"
+          on:click={resetThisGame}
+        >
           Try Again
         </button>
       {/if}
@@ -120,8 +118,9 @@
         >
           That's right!
         </p>
-        <button class="outline rounded px-4 py-2" on:click={startAnotherGame}
-          >Try New Word</button
+        <button
+          class="outline rounded px-4 py-2 select-none"
+          on:click={startAnotherGame}>Try New Word</button
         >
       {/if}
     </section>

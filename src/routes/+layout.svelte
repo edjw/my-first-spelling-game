@@ -30,7 +30,7 @@
   });
 </script>
 
-<main class="pt-8">
+<main class="pt-8j">
   <!-- {#if isPortrait}
     <section class="flex justify-center items-center min-h-[100dvh]">
       <p>Switch to landscape</p>
