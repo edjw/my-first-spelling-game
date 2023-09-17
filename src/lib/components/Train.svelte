@@ -3,7 +3,9 @@
     answerFound,
     selectedLetters,
     scrambledLetters,
+    trainX,
   } from "$lib/store/gameStore";
+  import { cubicOut } from "svelte/easing";
 
   export let carriages = 1;
   const carriageWidth = 150;
@@ -22,6 +24,15 @@
   );
 
   $: viewBox = `0 0 ${viewBoxWidth} 300`;
+
+  $: if ($answerFound) {
+    setTimeout(() => {
+      trainX.set(-2000, {
+        duration: 3000,
+        easing: cubicOut
+      });
+    }, 3000);
+  }
 
   const deselectLetter = (letterIndex: number) => {
     const letter = $selectedLetters.find(
@@ -51,7 +62,7 @@
     {viewBox}
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g transform={`scale(${scaleFactor})`}>
+    <g transform={`translate(${$trainX}) scale(${scaleFactor})`}>
       <!-- Train Parts -->
       <ellipse cx={trainStartX + 150} cy="170" rx="10" ry="10" fill="gold" />
       <rect

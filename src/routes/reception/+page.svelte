@@ -20,21 +20,40 @@
     answerFound,
     selectedLetters,
     scrambledLetters,
+    trainX,
   } from "$lib/store/gameStore";
 
   let scrambledWord: string;
 
   const startAnotherGame = () => {
+    trainX.set(3000, {
+      duration: 0,
+    });
     const result = startNewGame(answerWords);
     answerWord.set(result.answerWord);
     scrambledWord = result.scrambledWord;
     scrambledLetters.set(result.scrambledWordStatus);
     selectedLetters.set([]);
     answerFound.set(false);
+
+    setTimeout(() => {
+      trainX.set(0, {
+        duration: 2500,
+      });
+    }, 100);
   };
 
   const resetThisGame = () => {
-    selectedLetters.set(resetCurrentGame(scrambledWord));
+    resetCurrentGame(scrambledWord);
+    scrambledLetters.set(
+      scrambledWord.split("").map((letter, index) => ({
+        letter,
+        isSelected: false,
+        letterIndex: index,
+      }))
+    );
+    selectedLetters.set([]);
+    answerFound.set(false);
   };
 
   const toggleLetter = (letterIndex: number) => {
