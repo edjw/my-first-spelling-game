@@ -44,7 +44,7 @@
 </script>
 
 <div
-  class="max-w-full relative w-full before:content-[''] before:block before:pt-[35%]"
+  class="max-w-full relative w-full before:content-[''] before:block before:pt-[30%]"
 >
   <svg
     class="absolute top-0 left-10 w-full h-auto"
