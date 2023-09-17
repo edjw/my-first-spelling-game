@@ -30,12 +30,12 @@
   });
 </script>
 
-<main>
-  {#if isPortrait}
+<main class="pt-8">
+  <!-- {#if isPortrait}
     <section class="flex justify-center items-center min-h-[100dvh]">
       <p>Switch to landscape</p>
     </section>
-  {:else}
+  {:else} -->
     <slot />
-  {/if}
+  <!-- {/if} -->
 </main>

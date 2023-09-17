@@ -32,18 +32,19 @@ export const resetCurrentGame = (scrambledWord: string) => {
 export const toggleLetterSelected = (
   scrambledWordStatus: SelectedLetter[],
   letterIndex: number
-) => {
-  const letter = scrambledWordStatus.find(
+): SelectedLetter[] => {
+  const updatedStatus = [...scrambledWordStatus];
+
+  const indexToUpdate = updatedStatus.findIndex(
     (letter) => letter.letterIndex === letterIndex
   );
 
-  if (!letter) return scrambledWordStatus;
-  letter.isSelected = !letter.isSelected;
+  if (indexToUpdate === -1) return scrambledWordStatus;
 
-  return [
-    ...scrambledWordStatus.filter(
-      (letter) => letter.letterIndex !== letterIndex
-    ),
-    letter,
-  ];
+  const letterToUpdate = { ...updatedStatus[indexToUpdate] };
+  letterToUpdate.isSelected = !letterToUpdate.isSelected;
+
+  updatedStatus[indexToUpdate] = letterToUpdate;
+
+  return updatedStatus;
 };
